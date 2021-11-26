@@ -15,16 +15,19 @@ export default function Lineup({lineup}) {
             backgroundColor: 'rgb(var(--primary-color))',
             marginTop: '0.5rem',
             marginBottom: '0.5rem',
-            filter: 'drop-shadow(5px 5px 10px #000)'
-            }}>
+            filter: 'drop-shadow(1px 1px 1px rgb(var(--primary-color)))',
+            transition: 'all ease 0.5s'
+            }} className='btn-glow'>
             <div style={{marginBottom: '0.75rem'}}>
                 <div style={{
                     display: 'flex', 
                     alignItems: 'center',
                     textShadow: '0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%)',
                 }}>
-                    <a href={`#${urlCompTitle}`}><FontAwesomeIcon icon={faAnchor} style={{height: '24px', width: '24px', marginRight: '5px'}}/></a>
-                    <h2 id={urlCompTitle}>{lineup.title}</h2>
+                    <a href={`#${urlCompTitle}`} style={{display: 'flex'}}>
+                        <FontAwesomeIcon icon={faAnchor} style={{height: '24px', width: '24px', marginRight: '5px'}}/>
+                        <h2 id={urlCompTitle}>{lineup.title}</h2>
+                    </a>
                 </div>
                 <i><p>{lineup.agent} / {lineup.map} / {lineup.stage} / {lineup.location} / {lineup.attack ? 'attack' : 'defense'} / {lineup.utility_type} / {lineup.ability} </p></i>
             </div>

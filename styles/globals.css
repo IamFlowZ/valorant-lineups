@@ -42,3 +42,7 @@ form > section {
 .text-glow {
   text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
 }
+
+.btn-glow:hover {
+  box-shadow: rgba(var(--primary-color), 0.5) 0px 0px 20px 0px;
+}
