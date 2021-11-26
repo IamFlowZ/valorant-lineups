@@ -1,4 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAnchor } from '@fortawesome/free-solid-svg-icons'
+
 export default function Lineup({lineup}) {
+    const urlCompTitle = lineup.title.split(' ').join('-')
     return (
         <>
         <div style={{
@@ -6,7 +10,10 @@ export default function Lineup({lineup}) {
             marginLeft: '10rem',
             width: 'calc(100% - 20rem)'
             }}>
-            <h2>{lineup.title}</h2>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+                <a href={`#${urlCompTitle}`}><FontAwesomeIcon icon={faAnchor} style={{height: '24px', width: '24px', marginRight: '5px'}}/></a>
+                <h2 id={urlCompTitle}>{lineup.title}</h2>
+            </div>
             <i><p>{lineup.agent} / {lineup.map} / {lineup.stage} / {lineup.location} / {lineup.attack ? 'attack' : 'defense'} / {lineup.utility_type} / {lineup.ability} </p></i>
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <img
