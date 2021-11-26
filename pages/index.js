@@ -19,8 +19,6 @@ export default function Home({data}) {65
   const [utilityType, setUtilType] = useState('any');
   const [ability, setAbility] = useState('any');
 
-  console.log(map);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -60,7 +58,8 @@ export default function Home({data}) {65
           rel="noopener noreferrer"
         >
           {/* switch this to my logo */}
-          Built by Dakota Lewallen
+          Built by 
+            <Image src="/PageLogo.svg" alt="Dakota Lewallen's Logo" width={48} height={32} />
         </a>
       </footer>
     </div>
@@ -70,7 +69,7 @@ export default function Home({data}) {65
 export async function getStaticProps() {
   const db = sqlite('sqlite.db');
   const rows = db.prepare('select * from lineups').all();
-  console.log(rows);
+
   return {
     props: {data: rows}
   };

@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnchor } from '@fortawesome/free-solid-svg-icons'
+import Image from 'next/image'
 
 export default function Lineup({lineup}) {
     const urlCompTitle = lineup.title.split(' ').join('-')
