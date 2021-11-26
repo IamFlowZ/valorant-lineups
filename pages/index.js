@@ -29,24 +29,37 @@ export default function Home({data}) {65
       </Head>
 
       <main className={styles.main}>
-       
-        <h1 className={styles.title}>
-          Valorant-Lineups.gg
-        </h1>
-        <div>
-          <form style={{display: 'flex'}} className="pure-form">
-            <Select item='map' itemState={map} setItemState={setMap} selectOptions={MAPS} />
-            {/* add some logic to include locations based on map selection */}
-            <Select item='agent' itemState={agent} setItemState={setAgent} selectOptions={AGENTS} />
-            <Select item='attack' itemState={attack} setItemState={setAttack} selectOptions={ATKORDFND} />
-            <Select item='stage' itemState={stage} setItemState={setStage} selectOptions={ROUND_STAGES} />
-            <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
-            <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
-            <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={ABILITIES} />
-          </form>
+        <div style={{
+          backgroundColor: 'rgb(var(--primary-color))',
+          marginBottom: '0.5rem',
+          borderRadius: '1rem',
+          // border: '1px solid #dfdfdf',
+          padding: '1rem 2.5rem',
+        }}>
+          <h1 className={styles.title}>
+            Valorant-Lineups.gg
+          </h1>
+          <div>
+            <form style={{display: 'flex', flexDirection: 'column'}} className="pure-form">
+              <section style={{display: 'flex'}}>
+                <Select item='map' itemState={map} setItemState={setMap} selectOptions={MAPS} />
+                {/* add some logic to include locations based on map selection */}
+                <Select item='agent' itemState={agent} setItemState={setAgent} selectOptions={AGENTS} />
+              </section>
+              <section style={{display: 'flex'}}>
+                <Select item='attack' itemState={attack} setItemState={setAttack} selectOptions={ATKORDFND} />
+                <Select item='stage' itemState={stage} setItemState={setStage} selectOptions={ROUND_STAGES} />
+              </section>
+              <section style={{display: 'flex'}}>
+                <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
+                <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
+                <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={ABILITIES} />
+              </section>
+            </form>
+          </div>
         </div>
 
-        <hr className="solid" style={{width: 'calc(100% - 15rem)'}} />
+        {/* <hr className="solid" style={{width: 'calc(100% - 15rem)'}} /> */}
         
         {data.map(lineup => <Lineup key={lineup.id} lineup={lineup} />)}
       </main>

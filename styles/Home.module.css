@@ -9,14 +9,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FCF7F7;
+  /* background-color: #FCF7F7; */
+  /* background-color: #E4C981; */
+
 }
 
 .footer {
   display: flex;
   flex: 1;
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
+  /* border-top: 1px solid #eaeaea; */
   justify-content: center;
   align-items: center;
 }
@@ -43,6 +45,9 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  color: white;
+
+  text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
 }
 
 .title,
