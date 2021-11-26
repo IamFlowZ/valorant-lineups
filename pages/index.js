@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import purecss from 'purecss';
 import Head from 'next/head'
 import Image from 'next/image'
 import sqlite from 'better-sqlite3'
 import styles from '../styles/Home.module.css'
 import Lineup from '../components/Lineup'
 import Select from '../components/Select'
-import { ABILITIES, AGENTS, ATKORDFND, MAPS, ROUND_STAGES, UTILITY_TYPE, UTIL_OR_WALLBANG } from './enums';
+import { ABILITIES, AGENTS, ATKORDFND, MAPS, ROUND_STAGES, UTILITY_TYPE, UTIL_OR_WALLBANG } from '../components/enums';
 
 const column = {display: 'flex', flexDirection: 'column'}
 
