@@ -7,10 +7,10 @@ export default function Lineup({lineup}) {
             width: 'calc(100% - 20rem)'
             }}>
             <h2>{lineup.title}</h2>
-            <i><p>{lineup.agent} / {lineup.map} / Early Round / a site / attacking / utility / shock dart</p></i>
+            <i><p>{lineup.agent} / {lineup.map} / {lineup.stage} / {lineup.location} / {lineup.attack ? 'attack' : 'defense'} / {lineup.utility_type} / {lineup.ability} </p></i>
             <div style={{display: 'flex'}}>
-                <div>img</div>
-                <div>video</div>
+                <div>{lineup.picture}</div>
+                <div>{lineup.video}</div>
             </div>
             <p>{lineup.description}</p>
         </div>

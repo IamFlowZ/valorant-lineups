@@ -1,25 +1,31 @@
 import { useState } from 'react'
+import purecss from 'purecss';
 import Head from 'next/head'
 import Image from 'next/image'
 import sqlite from 'better-sqlite3'
 import styles from '../styles/Home.module.css'
 import Lineup from '../components/Lineup'
+import Select from '../components/Select'
+import { ABILITIES, AGENTS, ATKORDFND, MAPS, ROUND_STAGES, UTILITY_TYPE, UTIL_OR_WALLBANG } from './enums';
 
 const column = {display: 'flex', flexDirection: 'column'}
 
 export default function Home({data}) {
-  const map = useState();
-  const agent = useState();
-  const location = useState();
-  const attack = useState();
-  const stage = useState();
-  const utilityOrWallbang = useState();
-  const utilityType = useState();
-  const ability = useState();
+  const [map, setMap] = useState('any');
+  const [agent, setAgent] = useState('all');
+  const [location, setLocation] = useState('any');
+  const [attack, setAttack] = useState('either');
+  const [stage, setStage] = useState('any');
+  const [utilityOrWallbang, setUtilOrWallbang] = useState('either');
+  const [utilityType, setUtilType] = useState('any');
+  const [ability, setAbility] = useState('any');
+
+  console.log(map);
 
   return (
     <div className={styles.container}>
       <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Valorant Lineups</title>
         <meta name="description" content="Valorant Lineup Guides" />
         <link rel="icon" href="/favicon.ico" />
@@ -31,56 +37,14 @@ export default function Home({data}) {
           Valorant-Lineups.gg
         </h1>
         <div>
-          <form style={{display: 'flex'}}>
-            <section style={column}>
-              <label htmlFor="map">Map</label>
-              <select id="map">
-                <option>All</option>
-                <option>bind</option>
-              </select>
-            </section>
-            <section style={column}>
-              <label htmlFor="agent">Agent</label>
-              <select id="agent">
-                <option>All</option>
-                <option>Sova</option>
-              </select>
-            </section>
-            <section style={column}>
-              <label htmlFor="attack">Attack or Defend</label>
-              <select id="attack">
-                <option>Either</option>
-                <option>Attack</option>
-                <option>Defense</option>
-              </select>
-            </section>
-            <section style={column}>
-              <label htmlFor="stage">Stage</label>
-              <select id="stage">
-                <option>Any</option>
-                <option>Early Round</option>
-                <option>Mid Round</option>
-                <option>Post Plant</option>
-              </select>
-            </section>
-            <section style={column}>
-              <label htmlFor="utility">Utility or Wallbang</label>
-              <select id="utility">
-                <option>Either</option>
-                <option>Utility</option>
-                <option>Wallbang</option>
-              </select>
-            </section>
-            <section style={column}>
-              <label htmlFor="utilityType">Utility Type</label>
-              <select id="utilityType">
-                <option>Any</option>
-                <option>Smoke</option>
-                <option>Flash</option>
-                <option>Molly</option>
-                <option>Information</option>
-              </select>
-            </section>
+          <form style={{display: 'flex'}} className="pure-form">
+            <Select item='map' itemState={map} setItemState={setMap} selectOptions={MAPS} />
+            <Select item='agent' itemState={agent} setItemState={setAgent} selectOptions={AGENTS} />
+            <Select item='attack' itemState={attack} setItemState={setAttack} selectOptions={ATKORDFND} />
+            <Select item='stage' itemState={stage} setItemState={setStage} selectOptions={ROUND_STAGES} />
+            <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
+            <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
+            <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={ABILITIES} />
           </form>
         </div>
 
