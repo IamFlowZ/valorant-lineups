@@ -7,6 +7,13 @@ export const MAPS = [
     'breeze',
 ]
 
+export const MAP_LOCATIONS = {
+    'bind': [
+        'a-site/triple-stack',
+        'b-site/hooka',
+    ],
+}
+
 export const AGENTS = [
     'any',
     'jett',

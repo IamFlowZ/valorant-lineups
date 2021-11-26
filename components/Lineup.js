@@ -8,9 +8,21 @@ export default function Lineup({lineup}) {
             }}>
             <h2>{lineup.title}</h2>
             <i><p>{lineup.agent} / {lineup.map} / {lineup.stage} / {lineup.location} / {lineup.attack ? 'attack' : 'defense'} / {lineup.utility_type} / {lineup.ability} </p></i>
-            <div style={{display: 'flex'}}>
-                <div>{lineup.picture}</div>
-                <div>{lineup.video}</div>
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <img
+                    src={lineup.picture}
+                    width='47.5%'
+                    height={315}
+                />
+                <iframe
+                    src={lineup.video}
+                    width='47.5%'
+                    height={315}
+                    frameborder='0'
+                    allow='autoplay; encrypted-media'
+                    allowfullscreen
+                    title='video'
+                />
             </div>
             <p>{lineup.description}</p>
         </div>

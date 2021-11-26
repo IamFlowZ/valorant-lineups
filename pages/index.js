@@ -10,7 +10,7 @@ import { ABILITIES, AGENTS, ATKORDFND, MAPS, ROUND_STAGES, UTILITY_TYPE, UTIL_OR
 
 const column = {display: 'flex', flexDirection: 'column'}
 
-export default function Home({data}) {
+export default function Home({data}) {65
   const [map, setMap] = useState('any');
   const [agent, setAgent] = useState('all');
   const [location, setLocation] = useState('any');
@@ -39,6 +39,7 @@ export default function Home({data}) {
         <div>
           <form style={{display: 'flex'}} className="pure-form">
             <Select item='map' itemState={map} setItemState={setMap} selectOptions={MAPS} />
+            {/* add some logic to include locations based on map selection */}
             <Select item='agent' itemState={agent} setItemState={setAgent} selectOptions={AGENTS} />
             <Select item='attack' itemState={attack} setItemState={setAttack} selectOptions={ATKORDFND} />
             <Select item='stage' itemState={stage} setItemState={setStage} selectOptions={ROUND_STAGES} />

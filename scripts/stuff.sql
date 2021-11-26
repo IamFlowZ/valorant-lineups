@@ -40,8 +40,8 @@ INSERT INTO lineups (
 VALUES (
     'Sova recon dart for backsite a', -- title
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
-    'asdf', -- picture
-    'asdf', -- video
+    'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
+    'https://www.youtube.com/embed/inN4yM2ftUs', -- video
     'bind', -- map
     'a site', -- location
     'sova', -- agent
@@ -59,8 +59,8 @@ INSERT INTO lineups (
 VALUES (
     'Sova shock dart for hooka', -- title
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
-    'asdfasdf', -- picture
-    'asdffdsa', -- video
+    'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
+    'https://www.youtube.com/embed/inN4yM2ftUs', -- video
     'bind', -- map
     'b site', -- location
     'sova', -- agent
