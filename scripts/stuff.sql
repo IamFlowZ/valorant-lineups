@@ -1,19 +1,19 @@
 -- our create stmt
-CREATE TABLE lineups (
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    title varchar(100) NOT NULL,
-    description varchar(1024) NOT NULL,
-    picture varchar(255) NOT NULL,
-    video varchar(255) NOT NULL,
-    map varchar(25) NOT NULL,
-    agent varhcar(25),
-    location varchar(25),
-    attack int,
-    stage varchar(10),
-    utility_or_wallbang int,
-    utility_type varchar(15),
-    ability varchar(20) NOT NULL
-);
+-- CREATE TABLE lineups (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+--     title varchar(100) NOT NULL,
+--     description varchar(1024) NOT NULL,
+--     picture varchar(255) NOT NULL,
+--     video varchar(255) NOT NULL,
+--     map varchar(25) NOT NULL,
+--     agent varhcar(25),
+--     location varchar(25),
+--     attack int,
+--     stage varchar(10),
+--     utility_or_wallbang int,
+--     utility_type varchar(15),
+--     ability varchar(20) NOT NULL
+-- );
 
 -- INSERT INTO lineups (
 --     title, description, picture, 

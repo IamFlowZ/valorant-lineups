@@ -25,9 +25,9 @@ export default function Lineup({lineup}) {
                     src={lineup.video}
                     width='47.5%'
                     height={315}
-                    frameborder='0'
+                    frameBorder='0'
                     allow='autoplay; encrypted-media'
-                    allowfullscreen
+                    allowFullScreen
                     title='video'
                 />
             </div>
