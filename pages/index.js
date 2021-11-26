@@ -35,6 +35,8 @@ export default function Home({data}) {65
           borderRadius: '1rem',
           // border: '1px solid #dfdfdf',
           padding: '1rem 2.5rem',
+
+          width: 'calc(100% - 15rem)',
         }}>
           <h1 className={styles.title}>
             Valorant-Lineups.gg
