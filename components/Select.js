@@ -1,6 +1,6 @@
 import { capitalizeFirstLetter } from "./utils";
 
-const column = {display: 'flex', flexDirection: 'column'}
+const column = {display: 'flex', flexDirection: 'column', marginRight: '0.5rem'}
 
 export default function Select({item, itemState, setItemState, selectOptions}) {
     return (
