@@ -1,8 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAnchor } from '@fortawesome/free-solid-svg-icons'
+import { faAnchor, faStar } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 
 export default function Lineup({lineup}) {
+    const diffStars = []
+    // find more 'js' way of doing this that doesn't involve for?
+    for (let i = 0; i < lineup.difficulty; i++) {
+        diffStars.push(<FontAwesomeIcon icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
+    }
+    const usefulStars = []
+    for (let i = 0; i < lineup.usefulness; i++) {
+        usefulStars.push(<FontAwesomeIcon icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
+    }
     const urlCompTitle = lineup.title.split(' ').join('-')
     return (
         <>
@@ -17,7 +26,9 @@ export default function Lineup({lineup}) {
             marginBottom: '0.5rem',
             filter: 'drop-shadow(1px 1px 1px rgb(var(--primary-color)))',
             transition: 'all ease 0.5s'
-            }} className='btn-glow'>
+            }} 
+            className='btn-glow'
+        >
             <div style={{marginBottom: '0.75rem'}}>
                 <div style={{
                     display: 'flex', 
@@ -28,6 +39,10 @@ export default function Lineup({lineup}) {
                         <FontAwesomeIcon icon={faAnchor} style={{height: '24px', width: '24px', marginRight: '5px'}}/>
                         <h2 id={urlCompTitle}>{lineup.title}</h2>
                     </a>
+                </div>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <p>Difficulty: {diffStars} </p>
+                    <p>Usefulness: {usefulStars} </p>
                 </div>
                 <i><p>{lineup.agent} / {lineup.map} / {lineup.stage} / {lineup.location} / {lineup.attack ? 'attack' : 'defense'} / {lineup.utility_type} / {lineup.ability} </p></i>
             </div>

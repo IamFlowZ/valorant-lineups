@@ -5,11 +5,21 @@ import sqlite from 'better-sqlite3'
 import styles from '../styles/Home.module.css'
 import Lineup from '../components/Lineup'
 import Select from '../components/Select'
-import { ABILITIES, AGENTS, ATKORDFND, MAPS, ROUND_STAGES, UTILITY_TYPE, UTIL_OR_WALLBANG } from '../components/enums';
+import { 
+  ABILITIES,
+  AGENTS,
+  ATKORDFND,
+  MAPS,
+  ROUND_STAGES,
+  UTILITY_TYPE,
+  UTIL_OR_WALLBANG,
+  DIFFICULTY,
+  USEFULNESS,
+} from '../components/enums';
 
 const column = {display: 'flex', flexDirection: 'column'}
 
-export default function Home({data}) {65
+export default function Home({data}) {
   const [map, setMap] = useState('any');
   const [agent, setAgent] = useState('all');
   const [location, setLocation] = useState('any');
@@ -18,6 +28,8 @@ export default function Home({data}) {65
   const [utilityOrWallbang, setUtilOrWallbang] = useState('either');
   const [utilityType, setUtilType] = useState('any');
   const [ability, setAbility] = useState('any');
+  const [difficulty, setDifficulty] = useState(0);
+  const [usefulness, setUsefulness] = useState(0);
 
   return (
     <div className={styles.container}>
@@ -56,6 +68,10 @@ export default function Home({data}) {65
                 <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
                 <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
                 <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={ABILITIES} />
+              </section>
+              <section style={{display: 'flex'}}>
+                <Select item='difficulty' itemState={difficulty} setItemState={setDifficulty} selectOptions={DIFFICULTY} />
+                <Select item='usefulness' itemState={usefulness} setItemState={setUsefulness} selectOptions={USEFULNESS} />
               </section>
             </form>
           </div>

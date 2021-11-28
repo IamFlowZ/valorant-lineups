@@ -12,7 +12,9 @@
 --     stage varchar(10),
 --     utility_or_wallbang int,
 --     utility_type varchar(15),
---     ability varchar(20) NOT NULL
+--     ability varchar(20) NOT NULL,
+--     difficulty int NOT NULL,
+--     usefulness int NOT NULL
 -- );
 
 -- INSERT INTO lineups (
@@ -30,13 +32,16 @@
 --     '', -- stage
 --     0, -- utiltiy or wallbang
 --     '' -- utility type
---     'recon dart' -- ability
+--     'recon dart' -- ability,
+--     5 -- diffiulty out of 5,
+--     5 -- usefulness out of 5
 -- )
 
 INSERT INTO lineups (
     title, description, picture, 
     video, map, location, agent, attack, stage, 
-    utility_or_wallbang, utility_type, ability)
+    utility_or_wallbang, utility_type, ability,
+    difficulty, usefulness)
 VALUES (
     'Sova recon dart for backsite a', -- title
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
@@ -49,13 +54,16 @@ VALUES (
     'early-round', -- stage
     0, -- utiltiy or wallbang
     'information', -- utility type
-    'recon-dart' -- ability
+    'recon-dart', -- ability,
+    5,  -- difficulty
+    1 -- usefulness
 );
 
 INSERT INTO lineups (
     title, description, picture, 
     video, map, location, agent, attack, stage, 
-    utility_or_wallbang, utility_type, ability)
+    utility_or_wallbang, utility_type, ability,
+    difficulty, usefulness)
 VALUES (
     'Sova shock dart for hooka', -- title
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
@@ -68,5 +76,7 @@ VALUES (
     'mid-round', -- stage
     0, -- utiltiy or wallbang
     'damage-dealing', -- utility type
-    'shock-dart' -- ability
+    'shock-dart', -- ability
+    1,  -- difficulty
+    5 -- usefulness
 );

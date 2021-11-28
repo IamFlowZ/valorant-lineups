@@ -58,3 +58,11 @@ export const ABILITIES = [
     'boom-bot',
     'kayo-knife'
 ]
+
+export const DIFFICULTY = [
+    'any',1,2,3,4,5
+]
+
+export const USEFULNESS = [
+    'any',1,2,3,4,5
+]
