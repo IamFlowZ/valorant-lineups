@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnchor, faStar } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
+import { cleanHyphens } from './utils';
 
 export default function Lineup({lineup}) {
     const diffStars = []
@@ -44,7 +45,16 @@ export default function Lineup({lineup}) {
                     <p>Difficulty: {diffStars} </p>
                     <p>Usefulness: {usefulStars} </p>
                 </div>
-                <i><p>{lineup.agent} / {lineup.map} / {lineup.stage} / {lineup.location} / {lineup.attack ? 'attack' : 'defense'} / {lineup.utility_type} / {lineup.ability} </p></i>
+                <i><p>
+                    {/* see if you can prepend instead of template string */}
+                    {`${cleanHyphens(lineup.agent)}`} / 
+                    {` ${cleanHyphens(lineup.map)}` } / 
+                    {` ${cleanHyphens(lineup.stage)}`} / 
+                    {` ${cleanHyphens(lineup.location)}`} / 
+                    {lineup.attack ? ' attack' : ' defense'} / 
+                    {` ${cleanHyphens(lineup.utility_type)}`} / 
+                    {` ${cleanHyphens(lineup.ability)}`} 
+                </p></i>
             </div>
             
             <div style={{display: 'flex', justifyContent: 'space-between'}}>

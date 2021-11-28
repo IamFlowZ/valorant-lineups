@@ -4,3 +4,7 @@ export function capitalizeFirstLetter(string) {
     }
     return `${string}`
 }
+
+export function cleanHyphens(string) {
+    return string.split('-').join(' ')
+}
