@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import sqlite from 'better-sqlite3'
@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 import Lineup from '../components/Lineup'
 import Select from '../components/Select'
 import { 
-  ABILITIES,
+  ABILITY_MAPPING,
   AGENTS,
   ATKORDFND,
   MAPS,
@@ -28,8 +28,15 @@ export default function Home({data}) {
   const [utilityOrWallbang, setUtilOrWallbang] = useState('either');
   const [utilityType, setUtilType] = useState('any');
   const [ability, setAbility] = useState('any');
+  const [abilities, setAbilities] = useState([]);
   const [difficulty, setDifficulty] = useState(0);
   const [usefulness, setUsefulness] = useState(0);
+
+  useEffect(() => {
+    if (agent !== 'all') {
+      setAbilities(ABILITY_MAPPING[agent]);
+    }
+  }, [agent])
 
   return (
     <div className={styles.container}>
@@ -45,7 +52,6 @@ export default function Home({data}) {
           backgroundColor: 'rgb(var(--primary-color))',
           marginBottom: '0.5rem',
           borderRadius: '1rem',
-          // border: '1px solid #dfdfdf',
           padding: '1rem 2.5rem',
 
           width: 'calc(100% - 15rem)',
@@ -67,7 +73,9 @@ export default function Home({data}) {
               <section style={{display: 'flex'}}>
                 <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
                 <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
-                <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={ABILITIES} />
+                { agent !== 'all' && abilities.length > 0 ? 
+                  <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={abilities} />
+                : null}
               </section>
               <section style={{display: 'flex'}}>
                 <Select item='difficulty' itemState={difficulty} setItemState={setDifficulty} selectOptions={DIFFICULTY} />

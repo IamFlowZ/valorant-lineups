@@ -51,6 +51,22 @@ export const UTILITY_TYPE = [
     'information-gathering'
 ]
 
+export const ABILITY_MAPPING = {
+    'jett': [],
+    'sova': [
+        'any',
+        'shock-dart',
+        'recon-dart'
+    ],
+    'viper': [
+        'any',
+        'poison'
+    ],
+    'kayo': [],
+    'raze': [],
+    'chamber': []
+}
+
 export const ABILITIES = [
     'any',
     'shock-dart',
