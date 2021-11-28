@@ -21,7 +21,7 @@ const column = {display: 'flex', flexDirection: 'column'}
 
 export default function Home({data}) {
   const [map, setMap] = useState('any');
-  const [agent, setAgent] = useState('all');
+  const [agent, setAgent] = useState('any');
   const [location, setLocation] = useState('any');
   const [attack, setAttack] = useState('either');
   const [stage, setStage] = useState('any');
@@ -33,8 +33,10 @@ export default function Home({data}) {
   const [usefulness, setUsefulness] = useState(0);
 
   useEffect(() => {
-    if (agent !== 'all') {
+    if (agent !== 'any') {
       setAbilities(ABILITY_MAPPING[agent]);
+    } else {
+      setAbilities([]);
     }
   }, [agent])
 
@@ -72,10 +74,16 @@ export default function Home({data}) {
               </section>
               <section style={{display: 'flex'}}>
                 <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
-                <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
-                { agent !== 'all' && abilities.length > 0 ? 
-                  <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={abilities} />
-                : null}
+                { utilityOrWallbang !== 'wallbang' ?
+                <>
+                  <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
+                  { agent !== 'all' && abilities.length > 0 ? 
+                    <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={abilities} />
+                    : null
+                  }
+                  </>
+                  : null
+                }
               </section>
               <section style={{display: 'flex'}}>
                 <Select item='difficulty' itemState={difficulty} setItemState={setDifficulty} selectOptions={DIFFICULTY} />
