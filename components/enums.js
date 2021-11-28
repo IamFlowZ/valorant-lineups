@@ -5,13 +5,24 @@ export const MAPS = [
     'fracture',
     'haven',
     'breeze',
+    'split',
+]
+
+const basicLocations = [
+    'any',
+    'a',
+    'b'
 ]
 
 export const MAP_LOCATIONS = {
     'bind': [
+        ...basicLocations,
         'a-site/triple-stack',
         'b-site/hooka',
     ],
+    'split': [
+        ...basicLocations,
+    ]
 }
 
 export const AGENTS = [

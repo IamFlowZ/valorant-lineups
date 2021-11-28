@@ -7,11 +7,11 @@ export default function Lineup({lineup}) {
     const diffStars = []
     // find more 'js' way of doing this that doesn't involve for?
     for (let i = 0; i < lineup.difficulty; i++) {
-        diffStars.push(<FontAwesomeIcon icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
+        diffStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
     }
     const usefulStars = []
     for (let i = 0; i < lineup.usefulness; i++) {
-        usefulStars.push(<FontAwesomeIcon icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
+        usefulStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
     }
     const urlCompTitle = lineup.title.split(' ').join('-')
     return (

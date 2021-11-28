@@ -10,6 +10,7 @@ import {
   AGENTS,
   ATKORDFND,
   MAPS,
+  MAP_LOCATIONS,
   ROUND_STAGES,
   UTILITY_TYPE,
   UTIL_OR_WALLBANG,
@@ -23,6 +24,7 @@ export default function Home({data}) {
   const [map, setMap] = useState('any');
   const [agent, setAgent] = useState('any');
   const [location, setLocation] = useState('any');
+  const [mapLocations, setMapLocations] = useState([]);
   const [attack, setAttack] = useState('either');
   const [stage, setStage] = useState('any');
   const [utilityOrWallbang, setUtilOrWallbang] = useState('either');
@@ -38,7 +40,13 @@ export default function Home({data}) {
     } else {
       setAbilities([]);
     }
-  }, [agent])
+    console.log(map)
+    if (map !== 'any') {
+      setMapLocations(MAP_LOCATIONS[map]);
+    } else {
+      setMapLocations([]);
+    }
+  }, [agent, map])
 
   return (
     <div className={styles.container}>
@@ -71,6 +79,10 @@ export default function Home({data}) {
               <section style={{display: 'flex'}}>
                 <Select item='attack' itemState={attack} setItemState={setAttack} selectOptions={ATKORDFND} />
                 <Select item='stage' itemState={stage} setItemState={setStage} selectOptions={ROUND_STAGES} />
+                { map !== 'any' ?
+                  <Select item='location' itemState={location} setItemState={setLocation} selectOptions={mapLocations} />
+                  : null
+                }
               </section>
               <section style={{display: 'flex'}}>
                 <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
