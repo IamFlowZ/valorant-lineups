@@ -21,6 +21,7 @@ import {
 const column = {display: 'flex', flexDirection: 'column'}
 
 export default function Home({data}) {
+  const [ourData, setOurData] = useState({});
   const [map, setMap] = useState('any');
   const [agent, setAgent] = useState('any');
   const [location, setLocation] = useState('any');
@@ -46,7 +47,7 @@ export default function Home({data}) {
     } else {
       setMapLocations([]);
     }
-  }, [agent, map])
+  }, [agent, map, ourData])
 
   return (
     <div className={styles.container}>

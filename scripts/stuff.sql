@@ -1,4 +1,4 @@
--- our create stmt
+-- -- our create stmt
 -- CREATE TABLE lineups (
 --     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 --     title varchar(100) NOT NULL,
@@ -17,66 +17,156 @@
 --     usefulness int NOT NULL
 -- );
 
+-- -- INSERT INTO lineups (
+-- --     title, description, picture, 
+-- --     video, map, attack, stage, 
+-- --     utility_or_wallbang, utility_type)
+-- -- VALUES (
+-- --     '', -- title
+-- --     '', -- description
+-- --     '', -- picture
+-- --     '', -- video
+-- --     '', -- map
+-- --     '', -- agent
+-- --     0, -- attack
+-- --     '', -- stage
+-- --     0, -- utiltiy or wallbang
+-- --     '' -- utility type
+-- --     'recon dart' -- ability,
+-- --     5 -- diffiulty out of 5,
+-- --     5 -- usefulness out of 5
+-- -- )
+
 -- INSERT INTO lineups (
 --     title, description, picture, 
---     video, map, attack, stage, 
---     utility_or_wallbang, utility_type)
+--     video, map, location, agent, attack, stage, 
+--     utility_or_wallbang, utility_type, ability,
+--     difficulty, usefulness)
 -- VALUES (
---     '', -- title
---     '', -- description
---     '', -- picture
---     '', -- video
---     '', -- map
---     '', -- agent
+--     'Sova recon dart for backsite a', -- title
+--     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
+--     'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
+--     'https://www.youtube.com/embed/inN4yM2ftUs', -- video
+--     'bind', -- map
+--     'a site', -- location
+--     'sova', -- agent
 --     0, -- attack
---     '', -- stage
+--     'early-round', -- stage
 --     0, -- utiltiy or wallbang
---     '' -- utility type
---     'recon dart' -- ability,
---     5 -- diffiulty out of 5,
---     5 -- usefulness out of 5
--- )
+--     'information', -- utility type
+--     'recon-dart', -- ability,
+--     5,  -- difficulty
+--     1 -- usefulness
+-- );
 
-INSERT INTO lineups (
-    title, description, picture, 
-    video, map, location, agent, attack, stage, 
-    utility_or_wallbang, utility_type, ability,
-    difficulty, usefulness)
-VALUES (
-    'Sova recon dart for backsite a', -- title
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
-    'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
-    'https://www.youtube.com/embed/inN4yM2ftUs', -- video
-    'bind', -- map
-    'a site', -- location
-    'sova', -- agent
-    0, -- attack
-    'early-round', -- stage
-    0, -- utiltiy or wallbang
-    'information', -- utility type
-    'recon-dart', -- ability,
-    5,  -- difficulty
-    1 -- usefulness
-);
+-- INSERT INTO lineups (
+--     title, description, picture, 
+--     video, map, location, agent, attack, stage, 
+--     utility_or_wallbang, utility_type, ability,
+--     difficulty, usefulness)
+-- VALUES (
+--     'Sova shock dart for hooka', -- title
+--     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
+--     'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
+--     'https://www.youtube.com/embed/inN4yM2ftUs', -- video
+--     'bind', -- map
+--     'b site', -- location
+--     'sova', -- agent
+--     0, -- attack
+--     'mid-round', -- stage
+--     0, -- utiltiy or wallbang
+--     'damage-dealing', -- utility type
+--     'shock-dart', -- ability
+--     1,  -- difficulty
+--     5 -- usefulness
+-- );
 
-INSERT INTO lineups (
-    title, description, picture, 
-    video, map, location, agent, attack, stage, 
-    utility_or_wallbang, utility_type, ability,
-    difficulty, usefulness)
-VALUES (
-    'Sova shock dart for hooka', -- title
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
-    'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
-    'https://www.youtube.com/embed/inN4yM2ftUs', -- video
-    'bind', -- map
-    'b site', -- location
-    'sova', -- agent
-    0, -- attack
-    'mid-round', -- stage
-    0, -- utiltiy or wallbang
-    'damage-dealing', -- utility type
-    'shock-dart', -- ability
-    1,  -- difficulty
-    5 -- usefulness
-);
+-- INSERT INTO lineups (
+--     title, description, picture, 
+--     video, map, location, agent, attack, stage, 
+--     utility_or_wallbang, utility_type, ability,
+--     difficulty, usefulness)
+-- VALUES (
+--     'Viper molly for front site A on Iceox', -- title
+--     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
+--     'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
+--     'https://www.youtube.com/embed/inN4yM2ftUs', -- video
+--     'icebox', -- map
+--     'a-site', -- location
+--     'viper', -- agent
+--     0, -- attack
+--     'post-plant', -- stage
+--     0, -- utiltiy or wallbang
+--     'damage-dealing', -- utility type
+--     'poison', -- ability
+--     1,  -- difficulty
+--     5 -- usefulness
+-- );
+
+-- INSERT INTO lineups (
+--     title, description, picture, 
+--     video, map, location, agent, attack, stage, 
+--     utility_or_wallbang, utility_type, ability,
+--     difficulty, usefulness)
+-- VALUES (
+--     'Kayo molly for haven a site from c', -- title
+--     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
+--     'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
+--     'https://www.youtube.com/embed/inN4yM2ftUs', -- video
+--     'haven', -- map
+--     'a-site', -- location
+--     'kayo', -- agent
+--     1, -- attack
+--     'post-plant', -- stage
+--     0, -- utiltiy or wallbang
+--     'damage-dealing', -- utility type
+--     'molly', -- ability
+--     5,  -- difficulty
+--     2 -- usefulness
+-- );
+
+
+-- INSERT INTO lineups (
+--     title, description, picture, 
+--     video, map, location, agent, attack, stage, 
+--     utility_or_wallbang, utility_type, ability,
+--     difficulty, usefulness)
+-- VALUES (
+--     'Brimstone molly for anywhere post plant', -- title
+--     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
+--     'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
+--     'https://www.youtube.com/embed/inN4yM2ftUs', -- video
+--     'any', -- map
+--     'any', -- location
+--     'brimstone', -- agent
+--     0, -- attack
+--     'post-plant', -- stage
+--     0, -- utiltiy or wallbang
+--     'damage-dealing', -- utility type
+--     'molly', -- ability
+--     1,  -- difficulty
+--     5 -- usefulness
+-- );
+
+
+-- INSERT INTO lineups (
+--     title, description, picture, 
+--     video, map, location, agent, attack, stage, 
+--     utility_or_wallbang, utility_type, ability,
+--     difficulty, usefulness)
+-- VALUES (
+--     'Wallbang for post plant on a site haven', -- title
+--     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', -- description
+--     'https://www.pcgamesn.com/wp-content/uploads/2020/04/sova-bind-a-attack-1.jpg', -- picture
+--     'https://www.youtube.com/embed/inN4yM2ftUs', -- video
+--     'bind', -- map
+--     'a', -- location
+--     'any', -- agent
+--     0, -- attack
+--     'post-plant', -- stage
+--     1, -- utiltiy or wallbang
+--     '', -- utility type
+--     '', -- ability
+--     1,  -- difficulty
+--     5 -- usefulness
+-- );

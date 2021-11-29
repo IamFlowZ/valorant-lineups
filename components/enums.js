@@ -5,7 +5,7 @@ export const MAPS = [
     'fracture',
     'haven',
     'breeze',
-    'split',
+    'icebox'
 ]
 
 const basicLocations = [
@@ -62,20 +62,31 @@ export const UTILITY_TYPE = [
     'information-gathering'
 ]
 
+const abilityStarter = [
+    'any'
+]
+
 export const ABILITY_MAPPING = {
     'jett': [],
     'sova': [
-        'any',
+        ...abilityStarter,
         'shock-dart',
         'recon-dart'
     ],
     'viper': [
-        'any',
+        ...abilityStarter,
         'poison'
     ],
-    'kayo': [],
-    'raze': [],
-    'chamber': []
+    'kayo': [
+        ...abilityStarter,
+        'molly'
+    ],
+    'raze': [
+        ...abilityStarter,
+    ],
+    'chamber': [
+        ...abilityStarter,
+    ]
 }
 
 export const ABILITIES = [
