@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
+import aws from 'aws-sdk';
 import Head from 'next/head'
 import Image from 'next/image'
-import sqlite from 'better-sqlite3'
+// import sqlite from 'better-sqlite3'
 import styles from '../styles/Home.module.css'
 import Lineup from '../components/Lineup'
 import Select from '../components/Select'
@@ -18,9 +19,8 @@ import {
   USEFULNESS,
 } from '../components/enums';
 
-const column = {display: 'flex', flexDirection: 'column'}
-
 export default function Home({data}) {
+  console.log(data);
   const [ourData, setOurData] = useState({});
   const [map, setMap] = useState('any');
   const [agent, setAgent] = useState('any');
@@ -35,6 +35,9 @@ export default function Home({data}) {
   const [difficulty, setDifficulty] = useState(0);
   const [usefulness, setUsefulness] = useState(0);
 
+  // handle setting any value that isn't map/agent as url query params
+  // handle setting map/agent as path params.
+  // with both it's arguable that you could do them inside onChange, but maybe inside useEffect leads to less duplication?
   useEffect(() => {
     if (agent !== 'any') {
       setAbilities(ABILITY_MAPPING[agent]);
@@ -77,31 +80,35 @@ export default function Home({data}) {
                 {/* add some logic to include locations based on map selection */}
                 <Select item='agent' itemState={agent} setItemState={setAgent} selectOptions={AGENTS} />
               </section>
-              <section style={{display: 'flex'}}>
-                <Select item='attack' itemState={attack} setItemState={setAttack} selectOptions={ATKORDFND} />
-                <Select item='stage' itemState={stage} setItemState={setStage} selectOptions={ROUND_STAGES} />
-                { map !== 'any' ?
-                  <Select item='location' itemState={location} setItemState={setLocation} selectOptions={mapLocations} />
-                  : null
-                }
-              </section>
-              <section style={{display: 'flex'}}>
-                <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
-                { utilityOrWallbang !== 'wallbang' ?
+              { map !== 'any' && agent !== 'any' ?
                 <>
-                  <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
-                  { agent !== 'all' && abilities.length > 0 ? 
-                    <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={abilities} />
+                <section style={{display: 'flex'}}>
+                  <Select item='attack' itemState={attack} setItemState={setAttack} selectOptions={ATKORDFND} />
+                  <Select item='stage' itemState={stage} setItemState={setStage} selectOptions={ROUND_STAGES} />
+                  { map !== 'any' ?
+                    <Select item='location' itemState={location} setItemState={setLocation} selectOptions={mapLocations} />
                     : null
                   }
-                  </>
-                  : null
-                }
-              </section>
-              <section style={{display: 'flex'}}>
-                <Select item='difficulty' itemState={difficulty} setItemState={setDifficulty} selectOptions={DIFFICULTY} />
-                <Select item='usefulness' itemState={usefulness} setItemState={setUsefulness} selectOptions={USEFULNESS} />
-              </section>
+                </section>
+                <section style={{display: 'flex'}}>
+                  <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
+                  { utilityOrWallbang !== 'wallbang' ?
+                  <>
+                    <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
+                    { agent !== 'all' && abilities.length > 0 ? 
+                      <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={abilities} />
+                      : null
+                    }
+                    </>
+                    : null
+                  }
+                </section>
+                <section style={{display: 'flex'}}>
+                  <Select item='difficulty' itemState={difficulty} setItemState={setDifficulty} selectOptions={DIFFICULTY} />
+                  <Select item='usefulness' itemState={usefulness} setItemState={setUsefulness} selectOptions={USEFULNESS} />
+                </section>
+                </>
+              : null}
             </form>
           </div>
         </div>
@@ -126,11 +133,30 @@ export default function Home({data}) {
   )
 }
 
+// export async function getStaticPaths() {
+
+// }
+
 export async function getStaticProps() {
-  const db = sqlite('sqlite.db');
-  const rows = db.prepare('select * from lineups').all();
+  const dynamo = new aws.DynamoDB({region: 'us-east-1'});
+  const params = {
+    "KeyConditionExpression": "#mapAgent = :mapAgent",
+    "ExpressionAttributeValues": {
+      ":mapAgent": {
+        "S": "bind/sova"
+      }
+    },
+    "ExpressionAttributeNames": {
+      "#mapAgent": "mapAgent"
+    },
+    TableName: 'lineupsV4'
+  }
+
+  const result = await dynamo.query(params).promise()
+  // const db = sqlite('sqlite.db');
+  // const rows = db.prepare('select * from lineups').all();
 
   return {
-    props: {data: rows}
+    props: {data: result.Items.length ? result.Items : []}
   };
 }

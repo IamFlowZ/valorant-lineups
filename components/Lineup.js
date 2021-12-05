@@ -6,14 +6,14 @@ import { cleanHyphens } from './utils';
 export default function Lineup({lineup}) {
     const diffStars = []
     // find more 'js' way of doing this that doesn't involve for?
-    for (let i = 0; i < lineup.difficulty; i++) {
+    for (let i = 0; i < lineup.difficulty.N; i++) {
         diffStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
     }
     const usefulStars = []
-    for (let i = 0; i < lineup.usefulness; i++) {
+    for (let i = 0; i < lineup.usefulness.N; i++) {
         usefulStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
     }
-    const urlCompTitle = lineup.title.split(' ').join('-')
+    const urlCompTitle = lineup.title.S.split(' ').join('-')
     return (
         <>
         <div style={{
@@ -38,7 +38,7 @@ export default function Lineup({lineup}) {
                 }}>
                     <a href={`#${urlCompTitle}`} style={{display: 'flex'}}>
                         <FontAwesomeIcon icon={faAnchor} style={{height: '24px', width: '24px', marginRight: '5px'}}/>
-                        <h2 id={urlCompTitle}>{lineup.title}</h2>
+                        <h2 id={urlCompTitle}>{lineup.title.S}</h2>
                     </a>
                 </div>
                 <div style={{display: 'flex', alignItems: 'center'}}>
@@ -47,24 +47,24 @@ export default function Lineup({lineup}) {
                 </div>
                 <i><p>
                     {/* see if you can prepend instead of template string */}
-                    {`${cleanHyphens(lineup.agent)}`} / 
-                    {` ${cleanHyphens(lineup.map)}` } / 
-                    {` ${cleanHyphens(lineup.stage)}`} / 
-                    {` ${cleanHyphens(lineup.location)}`} / 
-                    {lineup.attack ? ' attack' : ' defense'} / 
-                    {` ${cleanHyphens(lineup.utility_type)}`} / 
-                    {` ${cleanHyphens(lineup.ability)}`} 
+                    {`${cleanHyphens(lineup.mapAgent.S.split('/')[1])}`} / 
+                    {` ${cleanHyphens(lineup.mapAgent.S.split('/')[0])}` } / 
+                    {` ${cleanHyphens(lineup.stage.S)}`} / 
+                    {` ${cleanHyphens(lineup.location.S)}`} / 
+                    {lineup.attack.BOOL ? ' attack' : ' defense'} / 
+                    {` ${cleanHyphens(lineup.utilType.S)}`} / 
+                    {` ${cleanHyphens(lineup.ability.S)}`} 
                 </p></i>
             </div>
             
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <img
-                    src={lineup.picture}
+                    src={lineup.picture.S}
                     width='47.5%'
                     height={315}
                 />
                 <iframe
-                    src={lineup.video}
+                    src={lineup.video.S}
                     width='47.5%'
                     height={315}
                     frameBorder='0'
@@ -73,7 +73,7 @@ export default function Lineup({lineup}) {
                     title='video'
                 />
             </div>
-            <p style={{margin: '0.75rem 0'}}>{lineup.description}</p>
+            <p style={{margin: '0.75rem 0'}}>{lineup.description.S}</p>
         </div>
         {/* <hr className="solid" style={{width: 'calc(100% - 15rem)'}} /> */}
         </>
