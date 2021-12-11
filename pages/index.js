@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import aws from 'aws-sdk';
 import Head from 'next/head'
 import Image from 'next/image'
@@ -21,6 +22,7 @@ import {
 
 export default function Home({data}) {
   console.log(data);
+  const router = useRouter();
   const [ourData, setOurData] = useState({});
   const [map, setMap] = useState('any');
   const [agent, setAgent] = useState('any');
@@ -50,12 +52,15 @@ export default function Home({data}) {
     } else {
       setMapLocations([]);
     }
-  }, [agent, map, ourData])
+    if (map !== 'any' || agent !== 'any') {
+      router.push(`${map}/${agent}`)
+    }
+  }, [agent, map, ourData, router])
 
   return (
     <div className={styles.container}>
       <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Valorant Lineups</title>
         <meta name="description" content="Valorant Lineup Guides" />
         <link rel="icon" href="/favicon.ico" />
@@ -115,7 +120,7 @@ export default function Home({data}) {
 
         {/* <hr className="solid" style={{width: 'calc(100% - 15rem)'}} /> */}
         
-        {data.map(lineup => <Lineup key={lineup.id} lineup={lineup} />)}
+        {data.map((lineup, i) => <Lineup key={i} lineup={lineup} />)}
       </main>
 
       <footer className={styles.footer}>
@@ -133,10 +138,6 @@ export default function Home({data}) {
   )
 }
 
-// export async function getStaticPaths() {
-
-// }
-
 export async function getStaticProps() {
   const dynamo = new aws.DynamoDB({region: 'us-east-1'});
   const params = {
@@ -153,8 +154,6 @@ export async function getStaticProps() {
   }
 
   const result = await dynamo.query(params).promise()
-  // const db = sqlite('sqlite.db');
-  // const rows = db.prepare('select * from lineups').all();
 
   return {
     props: {data: result.Items.length ? result.Items : []}
