@@ -19,7 +19,7 @@ import {
   USEFULNESS,
 } from '../../components/enums';
 
-export default function({data}) {
+export default function Agent({data}) {
     const router = useRouter();
     const [ourData, setOurData] = useState({});
     const [map, setMap] = useState(router.query.map);
@@ -140,7 +140,7 @@ export function getStaticPaths() {
             )
             return accu;
         }, []);
-
+    console.log(paths)
     return {paths, fallback: false}
 }
 

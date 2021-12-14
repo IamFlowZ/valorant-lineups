@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { AGENTS, MAPS } from '../components/enums'
 
-export default function() {
+export default function Map() {
     const router = useRouter()
     const { map } = router.query
 
