@@ -30,6 +30,7 @@ export const MAP_LOCATIONS = {
     'haven': [
       ...basicLocations,
       'c',
+      'garage',
     ],
     'breeze': [
       ...basicLocations,

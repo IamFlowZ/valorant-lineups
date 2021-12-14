@@ -21,6 +21,7 @@ import {
 
 export default function Agent({data}) {
     const router = useRouter();
+    const [filteredData, setFilteredData] = useState(data);
     const [map, setMap] = useState(router.query.map);
     const [agent, setAgent] = useState(router.query.agent);
     const [location, setLocation] = useState('any');
@@ -34,7 +35,14 @@ export default function Agent({data}) {
     const [difficulty, setDifficulty] = useState(0);
     const [usefulness, setUsefulness] = useState(0);
 
+    const filterDataForParam = (dataToFilter, paramValue, defaultParamValue, filterCheck) => {
+      return paramValue !== defaultParamValue ?
+        dataToFilter.filter(filterCheck) :
+        dataToFilter
+    }
+
     useEffect(() => {
+      let newFilteredData = data;
       if (agent !== 'any') {
         setAbilities(ABILITY_MAPPING[agent]);
       } else {
@@ -55,7 +63,57 @@ export default function Agent({data}) {
         setMap(router.query.map);
         setAgent(router.query.agent);
       }
-    }, [agent, map, router])
+
+      // newFilteredData is defaulted to all data,
+      // if any is selected we dont filter,
+      // if anything other than any is selected we filter and update
+      newFilteredData = filterDataForParam(
+        newFilteredData,
+        location,
+        'any',
+        lineup => (lineup.location?.S ?? '') === location
+      )
+
+      newFilteredData = filterDataForParam(
+        newFilteredData,
+        attack,
+        'either',
+        lineup => (lineup.attack?.BOOL ?? false) === (attack === 'attack')
+      )
+
+      newFilteredData = filterDataForParam(
+        newFilteredData,
+        stage,
+        'any',
+        lineup => (lineup.stage?.S ?? '') === stage
+      )
+
+      newFilteredData = filterDataForParam(
+        newFilteredData,
+        utilityOrWallbang,
+        'either',
+        lineup => (lineup.utilOrWallbang?.BOOL ?? false) === (utilityOrWallbang === 'utility')
+      )
+
+
+      console.log(newFilteredData)
+      newFilteredData.length !== filteredData.length ? setFilteredData(newFilteredData) : null
+
+    }, [
+      data,
+      filteredData,
+      agent,
+      map,
+      router,
+      location,
+      attack,
+      stage,
+      utilityOrWallbang,
+      utilityType,
+      ability,
+      difficulty,
+      usefulness,
+    ])
 
     // console.log(map, agent)
     return (
@@ -121,7 +179,7 @@ export default function Agent({data}) {
         </div>
 
       {/* <hr className="solid" style={{width: 'calc(100% - 15rem)'}} /> */}
-      <LineupWrapper data={data}/>
+      <LineupWrapper data={filteredData}/>
     </main>
     )
 }
