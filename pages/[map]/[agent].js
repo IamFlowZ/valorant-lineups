@@ -21,7 +21,6 @@ import {
 
 export default function Agent({data}) {
     const router = useRouter();
-    const [ourData, setOurData] = useState({});
     const [map, setMap] = useState(router.query.map);
     const [agent, setAgent] = useState(router.query.agent);
     const [location, setLocation] = useState('any');
@@ -47,8 +46,8 @@ export default function Agent({data}) {
       } else {
         setMapLocations([]);
       }
-      
-      if ((map !== 'any' && agent !== 'any') && (map !== router.query.map || agent !== router.query.agent)) {
+
+      if (!(map === 'any' && agent === 'any') && (map !== router.query.map || agent !== router.query.agent)) {
         router.push(`/${map}/${agent}`)
       }
 
@@ -56,7 +55,7 @@ export default function Agent({data}) {
         setMap(router.query.map);
         setAgent(router.query.agent);
       }
-    }, [agent, map, ourData, router])
+    }, [agent, map, router])
 
     // console.log(map, agent)
     return (
@@ -161,7 +160,7 @@ export async function getStaticProps(context) {
     }
   
     const result = await dynamo.query(params).promise()
-    // console.log(result)
+    console.log(result)
     return {
       props: {data: result.Items.length ? result.Items : []}
     };
