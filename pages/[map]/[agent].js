@@ -140,7 +140,7 @@ export function getStaticPaths() {
             )
             return accu;
         }, []);
-    console.log(paths)
+
     return {paths, fallback: false}
 }
 

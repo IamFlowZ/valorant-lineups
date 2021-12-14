@@ -49,11 +49,11 @@ export default function Lineup({lineup}) {
                         {/* see if you can prepend instead of template string */}
                         {`${cleanHyphens(lineup.mapAgent.S.split('/')[1])}`} / 
                         {` ${cleanHyphens(lineup.mapAgent.S.split('/')[0])}` } / 
-                        {` ${cleanHyphens(lineup.stage.S)}`} / 
-                        {` ${cleanHyphens(lineup.location.S)}`} / 
+                        {` ${cleanHyphens(lineup.stage?.S ?? '')}`} / 
+                        {` ${cleanHyphens(lineup.location?.S ?? '')}`} / 
                         {lineup.attack.BOOL ? ' attack' : ' defense'} / 
-                        {` ${cleanHyphens(lineup.utilType.S)}`} / 
-                        {` ${cleanHyphens(lineup.ability.S)}`} 
+                        {` ${cleanHyphens(lineup.utilType?.S ?? '')}`} / 
+                        {` ${cleanHyphens(lineup.ability?.S ?? '')}`} 
                     </p></i>
                 </div>
                 
