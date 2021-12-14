@@ -5,6 +5,13 @@ import { cleanHyphens } from './utils';
 
 export default function Lineup({lineup}) {
     const diffStars = []
+    const agent = lineup.mapAgent.S.split('/')[1]
+    const map = lineup.mapAgent.S.split('/')[0]
+    const stage = lineup.stage?.S ?? ''
+    const location = lineup.location?.S ?? ''
+    const utilType = lineup.utilType?.S ?? ''
+    const ability = lineup.ability?.S ?? ''
+
     // find more 'js' way of doing this that doesn't involve for?
     for (let i = 0; i < lineup.difficulty.N; i++) {
         diffStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
@@ -46,14 +53,15 @@ export default function Lineup({lineup}) {
                         <p>Usefulness: {usefulStars} </p>
                     </div>
                     <i><p>
+                        {cleanHyphens(agent)} /
                         {/* see if you can prepend instead of template string */}
-                        {`${cleanHyphens(lineup.mapAgent.S.split('/')[1])}`} / 
-                        {` ${cleanHyphens(lineup.mapAgent.S.split('/')[0])}` } / 
-                        {` ${cleanHyphens(lineup.stage?.S ?? '')}`} / 
-                        {` ${cleanHyphens(lineup.location?.S ?? '')}`} / 
-                        {lineup.attack.BOOL ? ' attack' : ' defense'} / 
-                        {` ${cleanHyphens(lineup.utilType?.S ?? '')}`} / 
-                        {` ${cleanHyphens(lineup.ability?.S ?? '')}`} 
+                        {/* {`${cleanHyphens(lineup.mapAgent.S.split('/')[1])}`} /  */}
+                        {cleanHyphens(map).padStart(map.length + 1, ' ')} / 
+                        {cleanHyphens(stage).padStart(stage.length + 1, ' ')} / 
+                        {cleanHyphens(location).padStart(location.length + 1, ' ')} / 
+                        {lineup.attack.BOOL ? ' attack' : ' defense'}
+                        {utilType.length  ? cleanHyphens(utilType).padStart(utilType.length + 3, ' / ') : null }
+                        {ability.length ? cleanHyphens(ability).padStart(ability.length + 3, ' / ') : null}
                     </p></i>
                 </div>
                 
