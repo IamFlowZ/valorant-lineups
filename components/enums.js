@@ -5,7 +5,8 @@ export const MAPS = [
     'fracture',
     'haven',
     'breeze',
-    'icebox'
+    'icebox',
+    'ascent',
 ]
 
 const basicLocations = [
@@ -22,7 +23,23 @@ export const MAP_LOCATIONS = {
     ],
     'split': [
         ...basicLocations,
-    ]
+    ],
+    'fracture': [
+      ...basicLocations,
+    ],
+    'haven': [
+      ...basicLocations,
+      'c',
+    ],
+    'breeze': [
+      ...basicLocations,
+    ],
+    'icebox': [
+      ...basicLocations,
+    ],
+    'ascent': [
+      ...basicLocations,
+    ],
 }
 
 export const AGENTS = [
@@ -31,8 +48,19 @@ export const AGENTS = [
     'sova',
     'viper',
     'kayo',
+    'chamber',
+    'astra',
+    'skye',
+    'cypher',
+    'killjoy',
+    'omen',
+    'breach',
+    'phoenix',
     'raze',
-    'chamber'
+    'reyna',
+    'sage',
+    'brimstone',
+    'yoru'
 ]
 
 export const ATKORDFND = [
@@ -43,8 +71,8 @@ export const ATKORDFND = [
 
 export const ROUND_STAGES = [
     'any',
-    'early',
-    'mid',
+    'early-round',
+    'mid-round',
     'post-plant'
 ]
 
@@ -82,20 +110,49 @@ export const ABILITY_MAPPING = {
         'molly'
     ],
     'raze': [
-        ...abilityStarter,
+      ...abilityStarter,
+      'boom-bot',
     ],
     'chamber': [
-        ...abilityStarter,
-    ]
+      ...abilityStarter,
+    ],
+    'astra': [
+      ...abilityStarter,
+    ],
+    'skye': [
+      ...abilityStarter,
+    ],
+    'cypher': [
+      ...abilityStarter,
+    ],
+    'killjoy': [
+      ...abilityStarter,
+    ],
+    'omen': [
+      ...abilityStarter,
+    ],
+    'breach': [
+      ...abilityStarter,
+    ],
+    'phoenix': [
+      ...abilityStarter,
+    ],
+    'raze': [
+      ...abilityStarter,
+    ],
+    'reyna': [
+      ...abilityStarter,
+    ],
+    'sage': [
+      ...abilityStarter,
+    ],
+    'brimstone': [
+      ...abilityStarter,
+    ],
+    'yoru': [
+      ...abilityStarter,
+    ],
 }
-
-export const ABILITIES = [
-    'any',
-    'shock-dart',
-    'recon-dart',
-    'boom-bot',
-    'kayo-knife'
-]
 
 export const DIFFICULTY = [
     'any',1,2,3,4,5

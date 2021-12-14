@@ -87,7 +87,7 @@ export default function Agent({data}) {
                 {/* add some logic to include locations based on map selection */}
                 <Select item='agent' itemState={agent} setItemState={setAgent} selectOptions={AGENTS} />
                 </section>
-                { map !== 'any' && agent !== 'any' ?
+                { map !== 'any' ?
                 <>
                 <section style={{display: 'flex'}}>
                     <Select item='attack' itemState={attack} setItemState={setAttack} selectOptions={ATKORDFND} />
@@ -100,14 +100,14 @@ export default function Agent({data}) {
                 <section style={{display: 'flex'}}>
                     <Select item='utility' itemState={utilityOrWallbang} setItemState={setUtilOrWallbang} selectOptions={UTIL_OR_WALLBANG} />
                     { utilityOrWallbang !== 'wallbang' ?
-                    <>
-                    <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
-                    { agent !== 'all' && abilities.length > 0 ? 
-                        <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={abilities} />
-                        : null
-                    }
-                    </>
-                    : null
+                      <>
+                        <Select item='utilityType' itemState={utilityType} setItemState={setUtilType} selectOptions={UTILITY_TYPE} />
+                        { agent !== 'all' && abilities.length > 0 ? 
+                            <Select item='ability' itemState={ability} setItemState={setAbility} selectOptions={abilities} />
+                            : null
+                        }
+                      </>
+                      : null
                     }
                 </section>
                 <section style={{display: 'flex'}}>
