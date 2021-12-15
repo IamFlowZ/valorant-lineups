@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import aws from 'aws-sdk';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShare } from '@fortawesome/free-solid-svg-icons'
 import Select from '../../components/Select'
 import LineupWrapper from '../../components/LineupWrapper'
 import styles from '../../styles/Home.module.css'
@@ -21,6 +23,7 @@ import {
 
 export default function Agent({data}) {
     const router = useRouter();
+    const [queryParams, setQueryParams] = useState([]);
     const [filteredData, setFilteredData] = useState(data);
     const [map, setMap] = useState(router.query.map);
     const [agent, setAgent] = useState(router.query.agent);
@@ -35,16 +38,25 @@ export default function Agent({data}) {
     const [difficulty, setDifficulty] = useState('any');
     const [usefulness, setUsefulness] = useState('any');
 
-    const filterDataForParam = (dataToFilter, paramValue, defaultParamValue, filterCheck) => {
+    // work on getting query params setup for shareability
+
+    const filterDataForParam = (dataToFilter, paramName, paramValue, defaultParamValue, filterCheck) => {
       console.log(paramValue, defaultParamValue, paramValue === defaultParamValue, filterCheck)
       return paramValue !== defaultParamValue ?
-        dataToFilter.filter(filterCheck) :
+        () => {
+        router.push(`/${map}/${agent}?${paramName}=${paramValue}`)
+          return dataToFilter.filter(filterCheck)
+        } :
         dataToFilter
+    }
+
+    const writePathToClipBoard = async () => {
+      await navigator.clipboard.writeText(`localhost:3000/${map}/${agent}`)
     }
 
     useEffect(() => {
       let newFilteredData = data;
-      console.log(newFilteredData)
+
       if (agent !== 'any') {
         setAbilities(ABILITY_MAPPING[agent]);
       } else {
@@ -71,14 +83,15 @@ export default function Agent({data}) {
       // if anything other than any is selected we filter and update
       newFilteredData = filterDataForParam(
         newFilteredData,
+        'location',
         location,
         'any',
         lineup => (lineup.location?.S ?? '') === location
       )
 
-      console.log(newFilteredData)
       newFilteredData = filterDataForParam(
         newFilteredData,
+        'attack',
         attack,
         'either',
         lineup => (lineup.attack?.BOOL ?? false) === (attack === 'attack')
@@ -86,6 +99,7 @@ export default function Agent({data}) {
 
       newFilteredData = filterDataForParam(
         newFilteredData,
+        'stage',
         stage,
         'any',
         lineup => (lineup.stage?.S ?? '') === stage
@@ -93,6 +107,7 @@ export default function Agent({data}) {
 
       newFilteredData = filterDataForParam(
         newFilteredData,
+        'utilityOrWallbang',
         utilityOrWallbang,
         'either',
         lineup => (lineup.utilOrWallbang?.BOOL ?? false) === (utilityOrWallbang === 'utility')
@@ -100,6 +115,7 @@ export default function Agent({data}) {
 
       newFilteredData = filterDataForParam(
         newFilteredData,
+        'utilityType',
         utilityType,
         'any',
         lineup => (lineup.utilType?.S ?? '') === utilityType
@@ -107,6 +123,7 @@ export default function Agent({data}) {
 
       newFilteredData = filterDataForParam(
         newFilteredData,
+        'ability',
         ability,
         'any',
         lineup => (lineup.ability?.S ?? '') === ability
@@ -114,6 +131,7 @@ export default function Agent({data}) {
 
       newFilteredData = filterDataForParam(
         newFilteredData,
+        'difficulty',
         difficulty,
         'any',
         lineup => (lineup.difficulty?.N ?? 0) === `${difficulty}`
@@ -121,12 +139,12 @@ export default function Agent({data}) {
 
       newFilteredData = filterDataForParam(
         newFilteredData,
+        'usefulness',
         usefulness,
         'any',
         lineup => (lineup.usefulness?.N ?? 'any') === `${usefulness}`
       )
 
-      console.log(newFilteredData)
       newFilteredData.length !== filteredData.length ? setFilteredData(newFilteredData) : null
 
     }, [
@@ -211,6 +229,24 @@ export default function Agent({data}) {
 
       {/* <hr className="solid" style={{width: 'calc(100% - 15rem)'}} /> */}
       <LineupWrapper data={filteredData}/>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'fixed',
+          borderRadius: '50%',
+          backgroundColor: 'rgb(var(--primary-color))',
+          height: '64px',
+          width: '64px',
+          top: '90%',
+          left: '80%',
+          cursor: 'pointer',
+        }}
+        onClick={writePathToClipBoard}
+      >
+        <FontAwesomeIcon icon={faShare} style={{height: '20px', width: '20px', marginRight: '5px'}}/>
+      </div>
     </main>
     )
 }
@@ -249,7 +285,7 @@ export async function getStaticProps(context) {
     }
   
     const result = await dynamo.query(params).promise()
-    console.log(result)
+
     return {
       props: {data: result.Items.length ? result.Items : []}
     };
