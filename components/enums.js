@@ -12,34 +12,68 @@ export const MAPS = [
 const basicLocations = [
     'any',
     'a',
-    'b'
+    'b',
+    'mid',
+    'a-site',
+    'b-site',
+    'a-main',
+    'b-main',
+    'defense-spawn',
+    'attack-spawn',
 ]
 
 export const MAP_LOCATIONS = {
     'bind': [
         ...basicLocations,
         'a-site/triple-stack',
-        'b-site/hooka',
+        'hooka',
     ],
     'split': [
         ...basicLocations,
+        'heaven',
+        'rafters',
+        'hell',
+        'vents',
+        'sewers',
+        'market',
     ],
     'fracture': [
       ...basicLocations,
+      'canteen',
+      'dish',
+      'drop',
+      'arcade',
+      'sand',
     ],
     'haven': [
       ...basicLocations,
       'c',
       'garage',
+      'a-link',
+      'c-link'
     ],
     'breeze': [
       ...basicLocations,
+      'double-doors',
+      'elbow',
+      'nest',
+      'bridge'
     ],
     'icebox': [
       ...basicLocations,
+      'kitchen',
+      'danger',
+      'snowman',
+      'belt',
+      'maze',
+      'pipes',
     ],
     'ascent': [
       ...basicLocations,
+      'tree',
+      'tiles',
+      'pizza',
+      'market',
     ],
 }
 
@@ -104,7 +138,9 @@ export const ABILITY_MAPPING = {
     ],
     'viper': [
         ...abilityStarter,
-        'poison'
+        'snake-bite',
+        'toxic-screen',
+        'viper-pit',
     ],
     'kayo': [
         ...abilityStarter,

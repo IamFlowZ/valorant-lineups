@@ -32,10 +32,11 @@ export default function Agent({data}) {
     const [utilityType, setUtilType] = useState('any');
     const [ability, setAbility] = useState('any');
     const [abilities, setAbilities] = useState([]);
-    const [difficulty, setDifficulty] = useState(0);
-    const [usefulness, setUsefulness] = useState(0);
+    const [difficulty, setDifficulty] = useState('any');
+    const [usefulness, setUsefulness] = useState('any');
 
     const filterDataForParam = (dataToFilter, paramValue, defaultParamValue, filterCheck) => {
+      console.log(paramValue, defaultParamValue, paramValue === defaultParamValue, filterCheck)
       return paramValue !== defaultParamValue ?
         dataToFilter.filter(filterCheck) :
         dataToFilter
@@ -43,6 +44,7 @@ export default function Agent({data}) {
 
     useEffect(() => {
       let newFilteredData = data;
+      console.log(newFilteredData)
       if (agent !== 'any') {
         setAbilities(ABILITY_MAPPING[agent]);
       } else {
@@ -74,6 +76,7 @@ export default function Agent({data}) {
         lineup => (lineup.location?.S ?? '') === location
       )
 
+      console.log(newFilteredData)
       newFilteredData = filterDataForParam(
         newFilteredData,
         attack,
@@ -104,7 +107,7 @@ export default function Agent({data}) {
 
       newFilteredData = filterDataForParam(
         newFilteredData,
-        utilityType,
+        ability,
         'any',
         lineup => (lineup.ability?.S ?? '') === ability
       )
@@ -120,7 +123,7 @@ export default function Agent({data}) {
         newFilteredData,
         usefulness,
         'any',
-        lineup => (lineup.usefulness?.N ?? 0) === `${usefulness}`
+        lineup => (lineup.usefulness?.N ?? 'any') === `${usefulness}`
       )
 
       console.log(newFilteredData)
