@@ -98,24 +98,24 @@ export default function Home({data}) {
   )
 }
 
-export async function getStaticProps() {
-  const dynamo = new aws.DynamoDB({region: 'us-east-1'});
-  const params = {
-    "KeyConditionExpression": "#mapAgent = :mapAgent",
-    "ExpressionAttributeValues": {
-      ":mapAgent": {
-        "S": "bind/sova"
-      }
-    },
-    "ExpressionAttributeNames": {
-      "#mapAgent": "mapAgent"
-    },
-    TableName: 'lineupsV4'
-  }
+// export async function getStaticProps() {
+//   const dynamo = new aws.DynamoDB({region: 'us-east-1'});
+//   const params = {
+//     "KeyConditionExpression": "#mapAgent = :mapAgent",
+//     "ExpressionAttributeValues": {
+//       ":mapAgent": {
+//         "S": "bind/sova"
+//       }
+//     },
+//     "ExpressionAttributeNames": {
+//       "#mapAgent": "mapAgent"
+//     },
+//     TableName: 'lineupsV4'
+//   }
 
-  const result = await dynamo.query(params).promise()
+//   const result = await dynamo.query(params).promise()
 
-  return {
-    props: {data: result.Items.length ? result.Items : []}
-  };
-}
+//   return {
+//     props: {data: result.Items.length ? result.Items : []}
+//   };
+// }

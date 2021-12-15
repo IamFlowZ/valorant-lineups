@@ -95,6 +95,33 @@ export default function Agent({data}) {
         lineup => (lineup.utilOrWallbang?.BOOL ?? false) === (utilityOrWallbang === 'utility')
       )
 
+      newFilteredData = filterDataForParam(
+        newFilteredData,
+        utilityType,
+        'any',
+        lineup => (lineup.utilType?.S ?? '') === utilityType
+      )
+
+      newFilteredData = filterDataForParam(
+        newFilteredData,
+        utilityType,
+        'any',
+        lineup => (lineup.ability?.S ?? '') === ability
+      )
+
+      newFilteredData = filterDataForParam(
+        newFilteredData,
+        difficulty,
+        'any',
+        lineup => (lineup.difficulty?.N ?? 0) === `${difficulty}`
+      )
+
+      newFilteredData = filterDataForParam(
+        newFilteredData,
+        usefulness,
+        'any',
+        lineup => (lineup.usefulness?.N ?? 0) === `${usefulness}`
+      )
 
       console.log(newFilteredData)
       newFilteredData.length !== filteredData.length ? setFilteredData(newFilteredData) : null
@@ -137,6 +164,7 @@ export default function Agent({data}) {
                 <h1 className={styles.title}>
                     Valorant-Lineups.gg
                 </h1>
+                <h2 style={{textAlign: 'center'}}>The best lineup study tool</h2>
             </a>
             <div>
             <form style={{display: 'flex', flexDirection: 'column'}} className="pure-form">
