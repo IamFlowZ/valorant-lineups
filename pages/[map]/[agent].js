@@ -240,7 +240,7 @@ export default function Agent({data}) {
           height: '64px',
           width: '64px',
           top: '90%',
-          left: '80%',
+          left: '90%',
           cursor: 'pointer',
         }}
         onClick={writePathToClipBoard}

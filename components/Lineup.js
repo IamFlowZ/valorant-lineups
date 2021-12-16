@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnchor, faStar } from '@fortawesome/free-solid-svg-icons'
+import ImageGallery from 'react-image-gallery';
 import Image from 'next/image'
 import { cleanHyphens } from './utils';
 
@@ -21,6 +22,17 @@ export default function Lineup({lineup}) {
         usefulStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
     }
     const urlCompTitle = lineup.title.S.split(' ').join('-')
+    const renderVideo = (videoLink) => (
+        <iframe
+            src={videoLink}
+            width='47.5%'
+            height={315}
+            frameBorder='0'
+            allow='autoplay; encrypted-media'
+            allowFullScreen
+            title='video'
+        />
+    )
     return (
         <>
             <div style={{
@@ -66,12 +78,24 @@ export default function Lineup({lineup}) {
                 </div>
                 
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <img
+                    <ImageGallery
+                        items={[{
+                                original: lineup.picture.S
+                            }, {
+                                original: lineup.picture.S
+                            }]
+                        }
+                    />
+                    <ImageGallery
+                        items={[lineup.video.S, lineup.video.s]}
+                        renderItem={renderVideo}
+                    />
+                    {/* <img
                         src={lineup.picture.S}
                         width='47.5%'
                         height={315}
-                    />
-                    <iframe
+                    /> */}
+                    {/* <iframe
                         src={lineup.video.S}
                         width='47.5%'
                         height={315}
@@ -79,7 +103,7 @@ export default function Lineup({lineup}) {
                         allow='autoplay; encrypted-media'
                         allowFullScreen
                         title='video'
-                    />
+                    /> */}
                 </div>
                 <p style={{margin: '0.75rem 0'}}>{lineup.description.S}</p>
             </div>

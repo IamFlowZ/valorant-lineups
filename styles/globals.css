@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
 :root {
   --primary-color: 111, 76, 255;
