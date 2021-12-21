@@ -22,9 +22,9 @@ export default function Lineup({lineup}) {
         usefulStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
     }
     const urlCompTitle = lineup.title.S.split(' ').join('-')
-    const renderVideo = (videoLink) => (
+    const renderVideo = (lineup) => (
         <iframe
-            src={videoLink}
+            src={lineup.embedUrl}
             width='47.5%'
             height={315}
             frameBorder='0'
@@ -87,8 +87,13 @@ export default function Lineup({lineup}) {
                         }
                     />
                     <ImageGallery
-                        items={[lineup.video.S, lineup.video.s]}
-                        renderItem={renderVideo}
+                        items={[{
+                          embedUrl: lineup.video.S,
+                          renderItem: renderVideo
+                        }, {
+                          embedUrl: lineup.video.S,
+                          renderItem: renderVideo
+                        }]}
                     />
                     {/* <img
                         src={lineup.picture.S}

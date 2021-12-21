@@ -1,12 +1,12 @@
 export const MAPS = [
     'any',
+    'ascent',
     'bind',
-    'split',
+    'breeze',
     'fracture',
     'haven',
-    'breeze',
     'icebox',
-    'ascent',
+    'split',
 ]
 
 const basicLocations = [
@@ -79,22 +79,22 @@ export const MAP_LOCATIONS = {
 
 export const AGENTS = [
     'any',
-    'jett',
-    'sova',
-    'viper',
-    'kayo',
-    'chamber',
     'astra',
-    'skye',
+    'breach',
+    'brimstone',
+    'chamber',
     'cypher',
+    'jett',
+    'kayo',
     'killjoy',
     'omen',
-    'breach',
     'phoenix',
     'raze',
     'reyna',
     'sage',
-    'brimstone',
+    'skye',
+    'sova',
+    'viper',
     'yoru'
 ]
 
