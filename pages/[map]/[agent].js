@@ -38,17 +38,7 @@ export default function Agent({data}) {
     const [difficulty, setDifficulty] = useState('any');
     const [usefulness, setUsefulness] = useState('any');
 
-    // work on getting query params setup for shareability
 
-    const filterDataForParam = (dataToFilter, paramName, paramValue, defaultParamValue, filterCheck) => {
-      console.log(paramValue, defaultParamValue, paramValue === defaultParamValue, filterCheck)
-      return paramValue !== defaultParamValue ?
-        () => {
-        router.push(`/${map}/${agent}?${paramName}=${paramValue}`)
-          return dataToFilter.filter(filterCheck)
-        } :
-        dataToFilter
-    }
 
     const writePathToClipBoard = async () => {
       await navigator.clipboard.writeText(`localhost:3000/${map}/${agent}`)
@@ -57,15 +47,24 @@ export default function Agent({data}) {
     useEffect(() => {
       let newFilteredData = data;
 
-      if (agent !== 'any') {
+      // work on getting query params setup for shareability
+      const filterDataForParam = (dataToFilter, paramName, paramValue, defaultParamValue, filterCheck) => {
+        // console.log(paramValue, defaultParamValue, paramValue === defaultParamValue, filterCheck)
+        return paramValue !== defaultParamValue ?
+          dataToFilter.filter(filterCheck):
+          dataToFilter
+      }
+
+      if (agent !== 'any' && (JSON.stringify(abilities) !== JSON.stringify(ABILITY_MAPPING[agent]))) {
+        // if it's not any AND the new ability mapping is different from the existing one.
         setAbilities(ABILITY_MAPPING[agent]);
-      } else {
+      } else if (abilities === 'any') {
         setAbilities([]);
       }
 
-      if (map !== 'any') {
+      if (map !== 'any'&& (JSON.stringify(mapLocations) !== JSON.stringify(MAP_LOCATIONS[map]))) {
         setMapLocations(MAP_LOCATIONS[map]);
-      } else {
+      } else if (map === 'any') {
         setMapLocations([]);
       }
 
@@ -161,6 +160,8 @@ export default function Agent({data}) {
       ability,
       difficulty,
       usefulness,
+      abilities,
+      mapLocations,
     ])
 
     // console.log(map, agent)

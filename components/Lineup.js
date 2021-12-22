@@ -67,8 +67,6 @@ export default function Lineup({lineup}) {
                     </div>
                     <i><p>
                         {cleanHyphens(agent)} /
-                        {/* see if you can prepend instead of template string */}
-                        {/* {`${cleanHyphens(lineup.mapAgent.S.split('/')[1])}`} /  */}
                         {cleanHyphens(map).padStart(map.length + 1, ' ')} / 
                         {cleanHyphens(stage).padStart(stage.length + 1, ' ')} / 
                         {cleanHyphens(location).padStart(location.length + 1, ' ')} / 
