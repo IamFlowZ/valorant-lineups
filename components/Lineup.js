@@ -26,7 +26,7 @@ export default function Lineup({lineup}) {
     const renderVideo = (lineup) => (
         <iframe
             src={lineup.embedUrl}
-            width='100%'
+            width='400px'
             height={315}
             frameBorder='0'
             allow='autoplay; encrypted-media'
@@ -84,6 +84,7 @@ export default function Lineup({lineup}) {
                           original: pic.S,
                         }))}
                     />
+                    <div style={{width: '5rem'}}></div>
                     <ImageGallery
                         items={lineup.video.L.map((vid) => ({
                           embedUrl: vid.S, 
