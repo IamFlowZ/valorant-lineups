@@ -22,10 +22,11 @@ export default function Lineup({lineup}) {
         usefulStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
     }
     const urlCompTitle = lineup.title.S.split(' ').join('-')
+
     const renderVideo = (lineup) => (
         <iframe
             src={lineup.embedUrl}
-            width='47.5%'
+            width='100%'
             height={315}
             frameBorder='0'
             allow='autoplay; encrypted-media'
@@ -79,36 +80,19 @@ export default function Lineup({lineup}) {
                 
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <ImageGallery
-                        items={[{
-                                original: lineup.picture.S
-                            }, {
-                                original: lineup.picture.S
-                            }]
-                        }
+                        items={lineup.picture.L.map((pic) => ({
+                          original: pic.S,
+                        }))}
                     />
                     <ImageGallery
-                        items={[{
-                          embedUrl: lineup.video.S,
-                          renderItem: renderVideo
-                        }, {
-                          embedUrl: lineup.video.S,
-                          renderItem: renderVideo
-                        }]}
+                        items={lineup.video.L.map((vid) => ({
+                          embedUrl: vid.S, 
+                          renderItem: renderVideo,
+                          fullscreen: false,
+                        }))}
+                        showFullscreenButton={false}
+                        showPlayButton={false}
                     />
-                    {/* <img
-                        src={lineup.picture.S}
-                        width='47.5%'
-                        height={315}
-                    /> */}
-                    {/* <iframe
-                        src={lineup.video.S}
-                        width='47.5%'
-                        height={315}
-                        frameBorder='0'
-                        allow='autoplay; encrypted-media'
-                        allowFullScreen
-                        title='video'
-                    /> */}
                 </div>
                 <p style={{margin: '0.75rem 0'}}>{lineup.description.S}</p>
             </div>
