@@ -12,6 +12,7 @@ export default function Lineup({lineup}) {
     const location = lineup.location?.S ?? ''
     const utilType = lineup.utilType?.S ?? ''
     const ability = lineup.ability?.S ?? ''
+    const source = lineup.source?.S ?? ''
 
     // find more 'js' way of doing this that doesn't involve for?
     for (let i = 0; i < lineup.difficulty.N; i++) {
@@ -74,6 +75,7 @@ export default function Lineup({lineup}) {
                         {utilType.length  ? cleanHyphens(utilType).padStart(utilType.length + 3, ' / ') : null }
                         {ability.length ? cleanHyphens(ability).padStart(ability.length + 3, ' / ') : null}
                     </p></i>
+                    <p>Source: {source}</p>
                 </div>
                 
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
