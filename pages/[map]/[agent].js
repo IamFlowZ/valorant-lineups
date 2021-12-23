@@ -284,9 +284,9 @@ export async function getStaticProps(context) {
       },
       TableName: 'lineupsV4'
     }
-  
+    console.log('hello')
     const result = await dynamo.query(params).promise()
-
+    console.log(result)
     return {
       props: {data: result.Items.length ? result.Items : []}
     };
