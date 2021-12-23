@@ -24,7 +24,7 @@ import {
 export default function Agent({data}) {
     const router = useRouter();
     const [queryParams, setQueryParams] = useState([]);
-    const [filteredData, setFilteredData] = useState(data);
+    const [filteredData, setFilteredData] = useState(data ? data : []);
     const [map, setMap] = useState(router.query.map);
     const [agent, setAgent] = useState(router.query.agent);
     const [location, setLocation] = useState('any');
@@ -38,14 +38,12 @@ export default function Agent({data}) {
     const [difficulty, setDifficulty] = useState('any');
     const [usefulness, setUsefulness] = useState('any');
 
-
-
     const writePathToClipBoard = async () => {
       await navigator.clipboard.writeText(`localhost:3000/${map}/${agent}`)
     }
 
     useEffect(() => {
-      let newFilteredData = data;
+      let newFilteredData = data ? data : [];
 
       // work on getting query params setup for shareability
       const filterDataForParam = (dataToFilter, paramName, paramValue, defaultParamValue, filterCheck) => {
@@ -286,7 +284,7 @@ export async function getStaticProps(context) {
     }
     console.log('hello')
     const result = await dynamo.query(params).promise()
-    console.log(result)
+    console.log(`123123${result}`)
     return {
       props: {data: result.Items.length ? result.Items : []}
     };
