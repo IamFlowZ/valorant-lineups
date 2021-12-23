@@ -269,12 +269,15 @@ export function getStaticPaths() {
 
 export async function getStaticProps(context) {
     // console.log(context)
-    aws.config.update({
-      credentials: {
-        'accessKeyId': process.env.aws_access_key_id_mine,
-        'secretAccessKey': process.env.aws_secret_access_key_mine
-      }
-    })
+    if (process.env.NODE_ENV !== 'development') {
+      console.log(process.env.NODE_ENV)
+      aws.config.update({
+        credentials: {
+          'accessKeyId': process.env.aws_access_key_id_mine,
+          'secretAccessKey': process.env.aws_secret_access_key_mine
+        }
+      })
+    }
     const dynamo = new aws.DynamoDB({region: 'us-east-1'});
     const params = {
       "KeyConditionExpression": "#mapAgent = :mapAgent",
@@ -288,9 +291,9 @@ export async function getStaticProps(context) {
       },
       TableName: 'lineupsV4'
     }
-    console.log('hello')
+
     const result = await dynamo.query(params).promise()
-    console.log(`123123${result}`)
+
     return {
       props: {data: result.Items.length ? result.Items : []}
     };
