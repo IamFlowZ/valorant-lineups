@@ -24,7 +24,7 @@ import {
 export default function Agent({data}) {
     const router = useRouter();
     const [queryParams, setQueryParams] = useState([]);
-    const [filteredData, setFilteredData] = useState(data);
+    const [filteredData, setFilteredData] = useState(data ? data : []);
     const [map, setMap] = useState(router.query.map);
     const [agent, setAgent] = useState(router.query.agent);
     const [location, setLocation] = useState('any');
@@ -38,34 +38,31 @@ export default function Agent({data}) {
     const [difficulty, setDifficulty] = useState('any');
     const [usefulness, setUsefulness] = useState('any');
 
-    // work on getting query params setup for shareability
-
-    const filterDataForParam = (dataToFilter, paramName, paramValue, defaultParamValue, filterCheck) => {
-      console.log(paramValue, defaultParamValue, paramValue === defaultParamValue, filterCheck)
-      return paramValue !== defaultParamValue ?
-        () => {
-        router.push(`/${map}/${agent}?${paramName}=${paramValue}`)
-          return dataToFilter.filter(filterCheck)
-        } :
-        dataToFilter
-    }
-
     const writePathToClipBoard = async () => {
       await navigator.clipboard.writeText(`localhost:3000/${map}/${agent}`)
     }
 
     useEffect(() => {
-      let newFilteredData = data;
+      let newFilteredData = data ? data : [];
 
-      if (agent !== 'any') {
+      // work on getting query params setup for shareability
+      const filterDataForParam = (dataToFilter, paramName, paramValue, defaultParamValue, filterCheck) => {
+        // console.log(paramValue, defaultParamValue, paramValue === defaultParamValue, filterCheck)
+        return paramValue !== defaultParamValue ?
+          dataToFilter.filter(filterCheck):
+          dataToFilter
+      }
+
+      if (agent !== 'any' && (JSON.stringify(abilities) !== JSON.stringify(ABILITY_MAPPING[agent]))) {
+        // if it's not any AND the new ability mapping is different from the existing one.
         setAbilities(ABILITY_MAPPING[agent]);
-      } else {
+      } else if (abilities === 'any') {
         setAbilities([]);
       }
 
-      if (map !== 'any') {
+      if (map !== 'any'&& (JSON.stringify(mapLocations) !== JSON.stringify(MAP_LOCATIONS[map]))) {
         setMapLocations(MAP_LOCATIONS[map]);
-      } else {
+      } else if (map === 'any') {
         setMapLocations([]);
       }
 
@@ -161,6 +158,8 @@ export default function Agent({data}) {
       ability,
       difficulty,
       usefulness,
+      abilities,
+      mapLocations,
     ])
 
     // console.log(map, agent)
@@ -240,7 +239,7 @@ export default function Agent({data}) {
           height: '64px',
           width: '64px',
           top: '90%',
-          left: '80%',
+          left: '90%',
           cursor: 'pointer',
         }}
         onClick={writePathToClipBoard}
@@ -270,6 +269,15 @@ export function getStaticPaths() {
 
 export async function getStaticProps(context) {
     // console.log(context)
+    if (process.env.NODE_ENV !== 'development') {
+      console.log(process.env.NODE_ENV)
+      aws.config.update({
+        credentials: {
+          'accessKeyId': process.env.aws_access_key_id_mine,
+          'secretAccessKey': process.env.aws_secret_access_key_mine
+        }
+      })
+    }
     const dynamo = new aws.DynamoDB({region: 'us-east-1'});
     const params = {
       "KeyConditionExpression": "#mapAgent = :mapAgent",
@@ -283,7 +291,7 @@ export async function getStaticProps(context) {
       },
       TableName: 'lineupsV4'
     }
-  
+
     const result = await dynamo.query(params).promise()
 
     return {

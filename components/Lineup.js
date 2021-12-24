@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnchor, faStar } from '@fortawesome/free-solid-svg-icons'
+import ImageGallery from 'react-image-gallery';
 import Image from 'next/image'
 import { cleanHyphens } from './utils';
 
@@ -11,6 +12,7 @@ export default function Lineup({lineup}) {
     const location = lineup.location?.S ?? ''
     const utilType = lineup.utilType?.S ?? ''
     const ability = lineup.ability?.S ?? ''
+    const source = lineup.source?.S ?? ''
 
     // find more 'js' way of doing this that doesn't involve for?
     for (let i = 0; i < lineup.difficulty.N; i++) {
@@ -21,6 +23,18 @@ export default function Lineup({lineup}) {
         usefulStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{height: '16px', width: '16px', marginRight: '5px'}}/>);
     }
     const urlCompTitle = lineup.title.S.split(' ').join('-')
+
+    const renderVideo = (lineup) => (
+        <iframe
+            src={lineup.embedUrl}
+            width='400px'
+            height={315}
+            frameBorder='0'
+            allow='autoplay; encrypted-media'
+            allowFullScreen
+            title='video'
+        />
+    )
     return (
         <>
             <div style={{
@@ -54,8 +68,6 @@ export default function Lineup({lineup}) {
                     </div>
                     <i><p>
                         {cleanHyphens(agent)} /
-                        {/* see if you can prepend instead of template string */}
-                        {/* {`${cleanHyphens(lineup.mapAgent.S.split('/')[1])}`} /  */}
                         {cleanHyphens(map).padStart(map.length + 1, ' ')} / 
                         {cleanHyphens(stage).padStart(stage.length + 1, ' ')} / 
                         {cleanHyphens(location).padStart(location.length + 1, ' ')} / 
@@ -63,22 +75,24 @@ export default function Lineup({lineup}) {
                         {utilType.length  ? cleanHyphens(utilType).padStart(utilType.length + 3, ' / ') : null }
                         {ability.length ? cleanHyphens(ability).padStart(ability.length + 3, ' / ') : null}
                     </p></i>
+                    <p>Source: {source}</p>
                 </div>
                 
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <img
-                        src={lineup.picture.S}
-                        width='47.5%'
-                        height={315}
+                    <ImageGallery
+                        items={lineup.picture.L.map((pic) => ({
+                          original: pic.S,
+                        }))}
                     />
-                    <iframe
-                        src={lineup.video.S}
-                        width='47.5%'
-                        height={315}
-                        frameBorder='0'
-                        allow='autoplay; encrypted-media'
-                        allowFullScreen
-                        title='video'
+                    <div style={{width: '5rem'}}></div>
+                    <ImageGallery
+                        items={lineup.video.L.map((vid) => ({
+                          embedUrl: vid.S, 
+                          renderItem: renderVideo,
+                          fullscreen: false,
+                        }))}
+                        showFullscreenButton={false}
+                        showPlayButton={false}
                     />
                 </div>
                 <p style={{margin: '0.75rem 0'}}>{lineup.description.S}</p>

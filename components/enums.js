@@ -1,12 +1,12 @@
 export const MAPS = [
     'any',
+    'ascent',
     'bind',
-    'split',
+    'breeze',
     'fracture',
     'haven',
-    'breeze',
     'icebox',
-    'ascent',
+    'split',
 ]
 
 const basicLocations = [
@@ -79,22 +79,22 @@ export const MAP_LOCATIONS = {
 
 export const AGENTS = [
     'any',
-    'jett',
-    'sova',
-    'viper',
-    'kayo',
-    'chamber',
     'astra',
-    'skye',
+    'breach',
+    'brimstone',
+    'chamber',
     'cypher',
+    'jett',
+    'kayo',
     'killjoy',
     'omen',
-    'breach',
     'phoenix',
     'raze',
     'reyna',
     'sage',
-    'brimstone',
+    'skye',
+    'sova',
+    'viper',
     'yoru'
 ]
 
@@ -130,64 +130,124 @@ const abilityStarter = [
 ]
 
 export const ABILITY_MAPPING = {
-    'jett': [],
-    'sova': [
-        ...abilityStarter,
-        'shock-dart',
-        'recon-dart'
-    ],
-    'viper': [
-        ...abilityStarter,
-        'snake-bite',
-        'toxic-screen',
-        'viper-pit',
-    ],
-    'kayo': [
-        ...abilityStarter,
-        'molly'
-    ],
-    'raze': [
-      ...abilityStarter,
-      'boom-bot',
-    ],
-    'chamber': [
-      ...abilityStarter,
-    ],
     'astra': [
       ...abilityStarter,
-    ],
-    'skye': [
-      ...abilityStarter,
-    ],
-    'cypher': [
-      ...abilityStarter,
-    ],
-    'killjoy': [
-      ...abilityStarter,
-    ],
-    'omen': [
-      ...abilityStarter,
+      'nova-pulse',
+      'nebula',
+      'gravity-well',
+      'astral-form/cosmic-divide'
     ],
     'breach': [
       ...abilityStarter,
-    ],
-    'phoenix': [
-      ...abilityStarter,
-    ],
-    'raze': [
-      ...abilityStarter,
-    ],
-    'reyna': [
-      ...abilityStarter,
-    ],
-    'sage': [
-      ...abilityStarter,
+      'flashpoint',
+      'fault-line',
+      'aftershock',
+      'rolling-thunder',
     ],
     'brimstone': [
       ...abilityStarter,
+      'incendiary',
+      'sky-smoke',
+      'stim-beacon',
+      'orbital-strike'
+    ],
+    'chamber': [
+      ...abilityStarter,
+      'headhunter',
+      'rendezvous',
+      'trademark',
+      'tour-de-force'
+    ],
+    'cypher': [
+      ...abilityStarter,
+      'cyber-cage',
+      'spy-cam',
+      'trapwire',
+      'neural-theft'
+    ],
+    'jett': [
+      ...abilityStarter,
+      'updraft',
+      'tailwind',
+      'cloudburst',
+      'blade-storm'
+    ],
+    'kayo': [
+        ...abilityStarter,
+        'flash/drive',
+        'zero/point',
+        'frag/ment',
+        'null/cmd'
+    ],
+    'killjoy': [
+      ...abilityStarter,
+      'alarmbot',
+      'turret',
+      'nanoswarm',
+      'lockdown',
+    ],
+    'omen': [
+      ...abilityStarter,
+      'paranoia',
+      'dark-cover',
+      'shrouded-step',
+      'from-the-shadows'
+    ],
+    'phoenix': [
+      ...abilityStarter,
+      'curveball',
+      'hot-hands',
+      'blaze',
+      'run-it-back'
+    ],
+    'raze': [
+      ...abilityStarter,
+      'blast-pack',
+      'paint-shells',
+      'boom-bot',
+      'show-stopper'
+    ],
+    'reyna': [
+      ...abilityStarter,
+      'devour',
+      'dismiss',
+      'leer',
+      'empress'
+    ],
+    'sage': [
+      ...abilityStarter,
+      'slow-orb',
+      'healing-orb',
+      'barrier-orb',
+      'resurrection'
+    ],
+    'skye': [
+      ...abilityStarter,
+      'trailblazer',
+      'guiding-light',
+      'regrowth',
+      'seekers'
+    ],
+    'sova': [
+      ...abilityStarter,
+      'shock-bolt',
+      'recon-bolt',
+      'owl-drone',
+      'hunters-fury'
+    ],
+    'viper': [
+      ...abilityStarter,
+      'poison-cloud',
+      'snake-bite',
+      'toxic-screen',
+      'viper-pit',
     ],
     'yoru': [
       ...abilityStarter,
+      'blindside',
+      'gatecrash',
+      'fakeout',
+      'dimensional-drift'
     ],
 }
 
