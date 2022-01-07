@@ -271,12 +271,12 @@ export async function getStaticProps(context) {
     // console.log(context)
     if (process.env.NODE_ENV !== 'development') {
       // console.log(process.env.NODE_ENV)
-      // aws.config.update({
-      //   credentials: {
-      //     'accessKeyId': process.env.aws_access_key_id_mine,
-      //     'secretAccessKey': process.env.aws_secret_access_key_mine
-      //   }
-      // })
+      aws.config.update({
+        credentials: {
+          'accessKeyId': process.env.aws_access_key_id_mine,
+          'secretAccessKey': process.env.aws_secret_access_key_mine
+        }
+      })
     }
     const dynamo = new aws.DynamoDB({region: 'us-east-1'});
     const params = {
