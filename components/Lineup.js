@@ -81,7 +81,7 @@ export default function Lineup({lineup}) {
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <ImageGallery
                         items={lineup.picture.L.map((pic) => ({
-                          original: pic.S,
+                          original: `https://valorant-lineups-images.s3.amazonaws.com/${map}/${agent}/${pic.S}`,
                         }))}
                     />
                     <div style={{width: '5rem'}}></div>

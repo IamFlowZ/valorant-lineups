@@ -270,7 +270,7 @@ export function getStaticPaths() {
 export async function getStaticProps(context) {
     // console.log(context)
     if (process.env.NODE_ENV !== 'development') {
-      console.log(process.env.NODE_ENV)
+      // console.log(process.env.NODE_ENV)
       aws.config.update({
         credentials: {
           'accessKeyId': process.env.aws_access_key_id_mine,
